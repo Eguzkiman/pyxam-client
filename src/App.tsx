@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useMutation } from 'react-query';
-import axios, { AxiosResponse, AxiosError} from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import styles from './App.module.scss'
 import MonacoEditor from 'react-monaco-editor';
@@ -10,9 +10,9 @@ interface RunResponse {
 }
 
 function App() {
-	
+
 	let [code, setCode] = useState<string>('');
-	
+
 	let [runCode, runCodeStatus] = useMutation((code): Promise<AxiosResponse<RunResponse>> => {
 		return axios.post('http://localhost:3001/run_python', { code })
 	})
