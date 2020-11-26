@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useMutation } from 'react-query';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import api from 'api'
 
 import MonacoEditor from 'react-monaco-editor';
 
@@ -12,7 +13,7 @@ export function PlaygroundPage(props: Props) {
     let [code, setCode] = useState<string>('print "Hello World"');
 
     let [runCode, runCodeStatus] = useMutation((code): Promise<AxiosResponse<RunResponse>> => {
-        return axios.post('http://localhost:3001/run_python', { code })
+        return api.post('run_python', { code })
     })
 
     let submitCode = useCallback((value) => {

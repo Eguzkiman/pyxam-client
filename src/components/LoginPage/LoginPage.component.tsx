@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
 import { useMutation } from 'react-query';
-import axios, { AxiosResponse } from 'axios';
 import { User } from 'types/BaseTypes'
+
+import api from 'api';
 
 import {
     useHistory
@@ -25,7 +26,7 @@ export function LoginPage(props: Props) {
     let history = useHistory()
     let [userName, setUserName] = useState<string>('')
     let [onSubmit, submitAction] = useMutation((): Promise<void> => {
-        return axios.post('http://localhost:3001/users', {
+        return api.post('users', {
             name: userName
         }).then(({ data }: { data: User }) => {
             props.onLogin(data)

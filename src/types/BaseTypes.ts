@@ -4,3 +4,11 @@ export interface User {
     createdAt: string;
     updatedAt: string;
 }
+
+export interface Test {
+    id: number,
+    name: string,
+    isActive: boolean,
+    createdAt: string,
+    updatedAt: string
+}

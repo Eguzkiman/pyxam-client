@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -22,6 +22,20 @@ function App() {
 
 	let [user, setUser] = useState<User | null>(null)
 
+	useEffect(() => {
+		let userStr = localStorage.getItem('user');
+		if (!userStr) return;
+
+		let user = JSON.parse(userStr) as User;
+
+		setUser(user)
+	}, [])
+
+	function onLogin(user: User) {
+		setUser(user)
+		localStorage.setItem('user', JSON.stringify(user));
+	}
+
 	return (
 		<ChakraProvider>
 			<div className={styles.App}>
@@ -30,7 +44,7 @@ function App() {
 						<Route path="/login">
 							<LoginPage
 								user={user}
-								onLogin={(user: User) => setUser(user)}
+								onLogin={onLogin}
 							/>
 						</Route>
 						{user && (
