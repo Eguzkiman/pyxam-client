@@ -7,7 +7,7 @@ import { Props } from './<%= name %>.types';
 import styles from './_<%= name %>.module.scss';
 
 export function <%= name %> (props: Props) {
-    const { className } = this.props;
+    const { className } = props;
 
     return (
         <div className={`${styles.<%= name %>} ${className || ''}`}>
