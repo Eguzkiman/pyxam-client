@@ -7,6 +7,8 @@ import styles from './_TestPage.module.scss';
 
 import api from 'api'
 
+import { Test } from 'types/BaseTypes'
+
 export function TestPage(props: Props) {
     const { className } = props;
 
@@ -14,14 +16,27 @@ export function TestPage(props: Props) {
         return api.get('tests');
     })
 
-    console.log({
-        isLoading,
-        error,
-        data
-    })
+    if (error) {
+        return <p>Error!</p>
+    }
+
+    if (isLoading || !data) {
+        return <p>Loading...</p>
+    }
+
+    let currentTest = (data.data as Test[])[0];
+
     return (
         <div className={`${styles.TestPage} ${className || ''}`}>
-            This is TestPage, a very nice, newly generated component.
+            Test name: {currentTest.name}
+            questions:
+            <ol>
+                {
+                    currentTest.questions.map((q) => (
+                        <li>{q.title}</li>
+                    ))
+                }
+            </ol>
         </div>
     );
 }

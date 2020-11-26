@@ -11,4 +11,15 @@ export interface Test {
     isActive: boolean,
     createdAt: string,
     updatedAt: string
+    questions: Question[]
+}
+
+interface Question {
+    id: number;
+    testId: number;
+    title: string;
+    description: string;
+    testCode: string;
+    createdAt: string,
+    updatedAt: string
 }
