@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
 	Link,
-	Redirect
+	Redirect,
 } from 'react-router-dom'
 
 import { ChakraProvider } from "@chakra-ui/react"
@@ -19,17 +19,16 @@ import { User } from 'types/BaseTypes';
 import styles from './App.module.scss'
 
 function App() {
-
-	let [user, setUser] = useState<User | null>(null)
-
-	useEffect(() => {
+	let userFromSession = useMemo(() => {
 		let userStr = localStorage.getItem('user');
-		if (!userStr) return;
+
+		if (!userStr) return null;
 
 		let user = JSON.parse(userStr) as User;
-
-		setUser(user)
+		return user;
 	}, [])
+
+	let [user, setUser] = useState<User | null>(userFromSession)
 
 	function onLogin(user: User) {
 		setUser(user)
@@ -62,8 +61,10 @@ function App() {
 								</Route>
 							</React.Fragment>
 						)}
+						<Route>
+							<Redirect to='/login' />
+						</Route>
 					</Switch>
-					{/* <Redirect to='/login' /> */}
 				</Router>
 			</div>
 		</ChakraProvider>

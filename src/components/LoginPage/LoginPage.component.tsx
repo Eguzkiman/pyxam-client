@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useMutation } from 'react-query';
 import { User } from 'types/BaseTypes'
 
 import api from 'api';
 
-import {
-    useHistory
-} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import {
     Input,
     Button,
-    ButtonGroup,
+    Stack,
     Container,
     FormControl,
     FormLabel,
-    FormHelperText
+    FormHelperText,
+    Heading
 } from "@chakra-ui/react"
 
 import { Props } from './LoginPage.types';
@@ -25,6 +24,16 @@ import styles from './_LoginPage.module.scss';
 export function LoginPage(props: Props) {
     let history = useHistory()
     let [userName, setUserName] = useState<string>('')
+
+    useEffect(() => {
+        let userStr = localStorage.getItem('user');
+
+        if (userStr) {
+            history.push('/test');
+            return;
+        };
+    }, [history])
+
     let [onSubmit, submitAction] = useMutation((): Promise<void> => {
         return api.post('users', {
             name: userName
@@ -43,9 +52,14 @@ export function LoginPage(props: Props) {
             <br />
             <br />
             <Container>
-                <FormControl id="email">
-                    <FormLabel>Elige tu nombre de usuario</FormLabel>
-                    <ButtonGroup variant="outline" spacing="6">
+                <Heading as="h1" size="3xl">
+                    Aló! Soy tu examen de progra (:
+                </Heading>
+                <br />
+                <br />
+                <FormControl id="username">
+                    <FormLabel>Pon aquí tu nombre de usuario pls</FormLabel>
+                    <Stack spacing={4}>
                         <Input
                             value={userName}
                             onChange={ev => setUserName(ev.currentTarget.value)}
@@ -54,12 +68,14 @@ export function LoginPage(props: Props) {
                         <Button
                             onClick={() => onSubmit()}
                             isLoading={submitAction.isLoading}
-                            loadingText='Dándole'
+                            loadingText='Comenzando'
                         >
-                            Dale
+                            Comenzar
                         </Button>
-                    </ButtonGroup>
-                    <FormHelperText>Este será tu nombre por siempre en progra</FormHelperText>
+                    </Stack>
+                    <FormHelperText>
+                        Porfa usa tu nombre de vscode o de codewars
+                    </FormHelperText>
                 </FormControl>
             </Container>
         </div>
