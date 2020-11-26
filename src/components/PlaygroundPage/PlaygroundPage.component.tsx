@@ -9,7 +9,7 @@ import styles from './_PlaygroundPage.module.scss';
 
 export function PlaygroundPage(props: Props) {
 
-    let [code, setCode] = useState<string>('');
+    let [code, setCode] = useState<string>('print "Hello World"');
 
     let [runCode, runCodeStatus] = useMutation((code): Promise<AxiosResponse<RunResponse>> => {
         return axios.post('http://localhost:3001/run_python', { code })
@@ -25,11 +25,14 @@ export function PlaygroundPage(props: Props) {
                 <MonacoEditor
                     language="javascript"
                     height='100%'
-                    theme="vs-dark"
+                    theme=""
                     value={code}
                     options={{
                         language: 'python',
                         fontSize: 18,
+                        minimap: {
+                            enabled: false
+                        }
                     }}
                     onChange={setCode}
                     editorDidMount={(editor, monaco) => {
