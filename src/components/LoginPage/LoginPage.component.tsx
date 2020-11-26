@@ -5,6 +5,10 @@ import axios, { AxiosResponse } from 'axios';
 import { User } from 'types/BaseTypes'
 
 import {
+    useHistory
+} from 'react-router-dom'
+
+import {
     Input,
     Button,
     ButtonGroup,
@@ -18,14 +22,14 @@ import { Props } from './LoginPage.types';
 import styles from './_LoginPage.module.scss';
 
 export function LoginPage(props: Props) {
-
+    let history = useHistory()
     let [userName, setUserName] = useState<string>('')
-
     let [onSubmit, submitAction] = useMutation((): Promise<void> => {
         return axios.post('http://localhost:3001/users', {
             name: userName
         }).then(({ data }: { data: User }) => {
             props.onLogin(data)
+            history.push('/test')
         })
     });
 
