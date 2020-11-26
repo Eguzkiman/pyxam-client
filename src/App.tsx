@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -14,27 +14,40 @@ import LoginPage from 'components/LoginPage'
 import PlaygroundPage from 'components/PlaygroundPage'
 import TestPage from 'components/TestPage'
 
+import { User } from 'types/BaseTypes';
+
 import styles from './App.module.scss'
 
 function App() {
+
+	let [user, setUser] = useState<User | null>(null)
+
 	return (
 		<ChakraProvider>
-
 			<div className={styles.App}>
 				<Router>
 					<Switch>
-						<Route path="/admin">
-							<AdminPage />
-						</Route>
 						<Route path="/login">
-							<LoginPage />
+							<LoginPage
+								user={user}
+								onLogin={(user: User) => setUser(user)}
+							/>
 						</Route>
-						<Route path="/playground">
-							<PlaygroundPage />
-						</Route>
-						<Route path="/test">
-							<TestPage />
-						</Route>
+						{user && (
+							<React.Fragment>
+								<Route path="/admin">
+									<AdminPage />
+								</Route>
+								<Route path="/playground">
+									<PlaygroundPage />
+								</Route>
+								<Route path="/test">
+									<TestPage
+										user={user}
+									/>
+								</Route>
+							</React.Fragment>
+						)}
 					</Switch>
 					{/* <Redirect to='/login' /> */}
 				</Router>

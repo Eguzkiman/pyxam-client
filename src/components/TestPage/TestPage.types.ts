@@ -1,7 +1,6 @@
+import { User } from 'types/BaseTypes';
+
 export interface Props {
-    // add props here
-    // don't forget to document them with jsdoc comments
-    // ie.
-    /** A className to override styling */
+    user: User;
     className?: string;
 }
