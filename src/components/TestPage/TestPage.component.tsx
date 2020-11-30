@@ -26,6 +26,8 @@ export function TestPage(props: Props) {
 
     let currentTest = (data.data as Test[])[0];
 
+    if (!currentTest) return <div></div>
+
     return (
         <div className={`${styles.TestPage} ${className || ''}`}>
             Test name: {currentTest.name}

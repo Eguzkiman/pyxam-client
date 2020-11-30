@@ -50,33 +50,37 @@ export function LoginPage(props: Props) {
             <br />
             <br />
             <br />
-            <br />
             <Container>
                 <Heading as="h1" size="3xl">
                     Aló! Soy tu examen de progra (:
                 </Heading>
                 <br />
                 <br />
-                <FormControl id="username">
-                    <FormLabel>Pon aquí tu nombre de usuario pls</FormLabel>
-                    <Stack spacing={4}>
-                        <Input
-                            value={userName}
-                            onChange={ev => setUserName(ev.currentTarget.value)}
-                            placeholder="ie. Eguzkiman"
-                        />
-                        <Button
-                            onClick={() => onSubmit()}
-                            isLoading={submitAction.isLoading}
-                            loadingText='Comenzando'
-                        >
-                            Comenzar
+                <form onSubmit={(ev) => {
+                    ev.preventDefault()
+                    onSubmit()
+                }}>
+                    <FormControl id="username">
+                        <FormLabel>Pon aquí tu nombre de usuario pls</FormLabel>
+                        <Stack spacing={4}>
+                            <Input
+                                value={userName}
+                                onChange={ev => setUserName(ev.currentTarget.value)}
+                                placeholder="ie. Eguzkiman"
+                            />
+                            <Button
+                                type="submit"
+                                isLoading={submitAction.isLoading}
+                                loadingText='Comenzando'
+                            >
+                                Comenzar
                         </Button>
-                    </Stack>
-                    <FormHelperText>
-                        Porfa usa tu nombre de vscode o de codewars
+                        </Stack>
+                        <FormHelperText>
+                            Porfa usa tu nombre de vscode o de codewars
                     </FormHelperText>
-                </FormControl>
+                    </FormControl>
+                </form>
             </Container>
         </div>
     );
