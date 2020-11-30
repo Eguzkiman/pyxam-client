@@ -1,48 +1,22 @@
-import React from 'react';
+import React from 'react'
 
-import { useQuery } from 'react-query'
+// import { useQuery } from 'react-query'
 
-import { Props } from './TestPage.types';
-import styles from './_TestPage.module.scss';
+import { Props } from './TestPage.types'
+import styles from './_TestPage.module.scss'
 
-import api from 'api'
+// import api from 'api'
 
-import { Test } from 'types/BaseTypes'
 import TopNav from 'components/TopNav'
 
 export function TestPage(props: Props) {
-    const { className } = props;
-
-    const { isLoading, error, data } = useQuery('repoData', () => {
-        return api.get('tests');
-    })
-
-    if (error) {
-        return <p>Error!</p>
-    }
-
-    if (isLoading || !data) {
-        return <p>Loading...</p>
-    }
-
-    let currentTest = (data.data as Test[])[0];
-
-    // if (!currentTest) return <div></div>
+    const { className } = props
 
     return (
         <div className={`${styles.TestPage} ${className || ''}`}>
-            <TopNav/>
-            Test name: {currentTest.name}
-            questions:
-            <ol>
-                {
-                    currentTest.questions.map((q) => (
-                        <li>{q.title}</li>
-                    ))
-                }
-            </ol>
+            <TopNav />
         </div>
-    );
+    )
 }
 
-export default TestPage;
+export default TestPage

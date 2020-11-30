@@ -1,6 +1,4 @@
-import { User } from 'types/BaseTypes';
-
 export interface Props {
-    user: User;
+    username: string;
     className?: string;
 }
