@@ -1,5 +1,7 @@
+import { Attempt } from 'types/BaseTypes'
+
 export interface Props {
-    username: string | null;
-    onLogin: (username: string) => void;
+    attempt: Attempt;
+    setAttempt: (attempt: Attempt) => void;
     className?: string;
 }

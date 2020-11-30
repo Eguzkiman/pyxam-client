@@ -20,21 +20,11 @@ import styles from './_LoginPage.module.scss'
 
 export function LoginPage(props: Props) {
     let history = useHistory()
-    let [username, setUsername] = useState<string>('')
 
-    useEffect(() => {
-        let userStr = localStorage.getItem('user')
-
-        if (userStr) {
-            history.push('/test')
-            return
-        }
-    }, [history])
-
-    const { className, onLogin } = props
+    const { className, attempt, setAttempt } = props
 
     function onSubmit() {
-        onLogin(username)
+        history.push('/test')
     }
 
     return (
@@ -60,9 +50,12 @@ export function LoginPage(props: Props) {
                         <Stack spacing={4}>
                             <Input
                                 required
-                                value={username}
+                                value={attempt.username}
                                 onChange={(ev) =>
-                                    setUsername(ev.currentTarget.value)
+                                    setAttempt({
+                                        ...attempt,
+                                        username: ev.currentTarget.value,
+                                    })
                                 }
                                 placeholder="ie. Eguzkiman"
                                 minlength="3"

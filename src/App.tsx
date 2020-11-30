@@ -6,6 +6,8 @@ import {
     Redirect,
 } from 'react-router-dom'
 
+import { Attempt } from 'types/BaseTypes'
+
 import { ChakraProvider } from '@chakra-ui/react'
 
 import AdminPage from 'components/AdminPage'
@@ -15,17 +17,25 @@ import TestPage from 'components/TestPage'
 
 import styles from './App.module.scss'
 
+const emptyAttempt: Attempt = {
+    username: '',
+    a1: '',
+    a2: '',
+    a3: '',
+    a4: '',
+    a5: '',
+}
+
 function App() {
-    let userFromSession = useMemo(() => {
-        return localStorage.getItem('user')
+    let attemptFromSession = useMemo(() => {
+        let attemptStr = localStorage.getItem('attempt')
+        if (!attemptStr) return null
+        return JSON.parse(attemptStr) as Attempt
     }, [])
 
-    let [username, setUsername] = useState<string | null>(userFromSession)
-
-    function onLogin(username: string) {
-        setUsername(username)
-        localStorage.setItem('user', username)
-    }
+    let [attempt, setAttempt] = useState<Attempt>(
+        attemptFromSession || emptyAttempt
+    )
 
     return (
         <ChakraProvider>
@@ -33,21 +43,25 @@ function App() {
                 <Router>
                     <Switch>
                         <Route path="/login">
-                            <LoginPage username={username} onLogin={onLogin} />
+                            <LoginPage
+                                attempt={attempt}
+                                setAttempt={setAttempt}
+                            />
                         </Route>
-                        {username && (
-                            <React.Fragment>
-                                <Route path="/admin">
-                                    <AdminPage />
-                                </Route>
-                                <Route path="/playground">
-                                    <PlaygroundPage />
-                                </Route>
-                                <Route path="/test">
-                                    <TestPage username={username} />
-                                </Route>
-                            </React.Fragment>
-                        )}
+                        <React.Fragment>
+                            <Route path="/admin">
+                                <AdminPage />
+                            </Route>
+                            <Route path="/playground">
+                                <PlaygroundPage />
+                            </Route>
+                            <Route path="/test">
+                                <TestPage
+                                    attempt={attempt}
+                                    setAttempt={setAttempt}
+                                />
+                            </Route>
+                        </React.Fragment>
                         <Route>
                             <Redirect to="/login" />
                         </Route>

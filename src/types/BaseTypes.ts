@@ -1,5 +1,5 @@
 export interface Attempt {
-    userame: string;
+    username: string;
     a1: string;
     a2: string;
     a3: string;
