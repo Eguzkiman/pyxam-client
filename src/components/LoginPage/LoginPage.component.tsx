@@ -56,17 +56,24 @@ export function LoginPage(props: Props) {
                 </Heading>
                 <br />
                 <br />
-                <form onSubmit={(ev) => {
-                    ev.preventDefault()
-                    onSubmit()
-                }}>
+                <form
+                    autoComplete="off"
+                    onSubmit={(ev) => {
+                        ev.preventDefault()
+                        onSubmit()
+                    }}
+                >
                     <FormControl id="username">
                         <FormLabel>Pon aquí tu nombre de usuario pls</FormLabel>
                         <Stack spacing={4}>
                             <Input
+                                required
                                 value={userName}
                                 onChange={ev => setUserName(ev.currentTarget.value)}
                                 placeholder="ie. Eguzkiman"
+                                minlength="3"
+                                maxlength="20"
+                                autocomplete="off" 
                             />
                             <Button
                                 type="submit"
@@ -78,7 +85,7 @@ export function LoginPage(props: Props) {
                         </Stack>
                         <FormHelperText>
                             Porfa usa tu nombre de vscode o de codewars
-                    </FormHelperText>
+                        </FormHelperText>
                     </FormControl>
                 </form>
             </Container>
