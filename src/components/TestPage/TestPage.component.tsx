@@ -8,6 +8,7 @@ import styles from './_TestPage.module.scss';
 import api from 'api'
 
 import { Test } from 'types/BaseTypes'
+import TopNav from 'components/TopNav'
 
 export function TestPage(props: Props) {
     const { className } = props;
@@ -26,10 +27,11 @@ export function TestPage(props: Props) {
 
     let currentTest = (data.data as Test[])[0];
 
-    if (!currentTest) return <div></div>
+    // if (!currentTest) return <div></div>
 
     return (
         <div className={`${styles.TestPage} ${className || ''}`}>
+            <TopNav/>
             Test name: {currentTest.name}
             questions:
             <ol>
