@@ -21,7 +21,7 @@ import {
     HStack,
 } from '@chakra-ui/react'
 
-import { FiLogOut, FiPlay, FiSave } from 'react-icons/fi'
+import { FiLogOut, FiPlay, FiMail } from 'react-icons/fi'
 
 import { Props } from './TopNav.types'
 import styles from './_TopNav.module.scss'
@@ -61,12 +61,12 @@ export function TopNav(props: Props) {
                             </Button>
                             <Button
                                 colorScheme="green"
-                                leftIcon={<Icon as={FiSave} />}
+                                leftIcon={<Icon as={FiMail} />}
                                 onClick={onSubmitCode}
                                 isLoading={isSubmittingCode}
-                                loadingText={'Saving...'}
+                                loadingText={'Submitting...'}
                             >
-                                Save
+                                Submit
                             </Button>
                             <Popover
                                 placement="bottom-start"

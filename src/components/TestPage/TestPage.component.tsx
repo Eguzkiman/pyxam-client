@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
+import { Attempt } from 'types/BaseTypes'
 import { Props } from './TestPage.types'
 import styles from './_TestPage.module.scss'
 import { useHistory } from 'react-router-dom'
@@ -18,6 +19,12 @@ export function TestPage(props: Props) {
     let [runCode, runCodeResult] = useMutation(
         (code: string): Promise<any> => {
             return api.post('/run_python', { code })
+        }
+    )
+
+    let [submitCode, submitCodeResult] = useMutation(
+        (attempt: Attempt): Promise<any> => {
+            return api.post('/attempts', attempt)
         }
     )
 
@@ -43,9 +50,9 @@ export function TestPage(props: Props) {
                 <TopNav
                     attempt={attempt}
                     isRunningCode={runCodeResult.isLoading}
-                    isSubmittingCode={false}
+                    isSubmittingCode={submitCodeResult.isLoading}
                     onRunCode={() => runCode(currentQuestion)}
-                    onSubmitCode={() => {}}
+                    onSubmitCode={() => submitCode(attempt)}
                 />
                 <Tabs onChange={setCurrentTab}>
                     <TabList>
