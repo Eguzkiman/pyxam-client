@@ -3,13 +3,14 @@ import React, { useState, useEffect } from 'react'
 import { Props } from './TestPage.types'
 import styles from './_TestPage.module.scss'
 import { useHistory } from 'react-router-dom'
+import Editor from 'components/Editor'
 import { Flex, Box, Divider, Tabs, TabList, Tab } from '@chakra-ui/react'
 
 import TopNav from 'components/TopNav'
 
 export function TestPage(props: Props) {
     let history = useHistory()
-    let { className, attempt } = props
+    let { className, attempt, setAttempt } = props
 
     let [currentTab, setCurrentTab] = useState<number>(0)
     let questions = [attempt.a1, attempt.a2, attempt.a3, attempt.a4, attempt.a5]
@@ -24,24 +25,26 @@ export function TestPage(props: Props) {
         <div className={`${styles.TestPage} ${className || ''}`}>
             <Flex direction="column" height="100%">
                 <TopNav attempt={attempt} />
+                <Tabs onChange={setCurrentTab}>
+                    <TabList>
+                        <Tab>Pregunta 1</Tab>
+                        <Tab>Pregunta 2</Tab>
+                        <Tab>Pregunta 3</Tab>
+                        <Tab>Pregunta 4</Tab>
+                        <Tab>Pregunta 5</Tab>
+                    </TabList>
+                </Tabs>
                 <Box flex={1}>
-                    <Flex height="100%">
-                        <Box height="100%" flex={1}>
-                            <Tabs onChange={setCurrentTab}>
-                                <TabList>
-                                    <Tab>Pregunta 1</Tab>
-                                    <Tab>Pregunta 2</Tab>
-                                    <Tab>Pregunta 3</Tab>
-                                    <Tab>Pregunta 4</Tab>
-                                    <Tab>Pregunta 5</Tab>
-                                </TabList>
-                            </Tabs>
-                            <pre>{questions[currentTab]}</pre>
+                    <Flex height="100%" direction="row">
+                        <Box flex={1}>
+                            <Editor
+                                value={questions[currentTab]}
+                                onChange={(code) => {}}
+                                onSubmit={(code) => {}}
+                            />
                             <Divider />
                         </Box>
-                        <Box height="100%" flex={1}>
-                            Result
-                        </Box>
+                        <Box flex={1}>Result</Box>
                     </Flex>
                 </Box>
             </Flex>
