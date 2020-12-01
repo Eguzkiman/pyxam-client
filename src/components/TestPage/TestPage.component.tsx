@@ -12,6 +12,7 @@ export function TestPage(props: Props) {
     let { className, attempt } = props
 
     let [currentTab, setCurrentTab] = useState<number>(0)
+    let questions = [attempt.a1, attempt.a2, attempt.a3, attempt.a4, attempt.a5]
 
     useEffect(() => {
         if (!attempt.username) {
@@ -35,13 +36,11 @@ export function TestPage(props: Props) {
                                     <Tab>Pregunta 5</Tab>
                                 </TabList>
                             </Tabs>
-                            <Box p={4}>
-                                <b>Pregunta {currentTab}</b>
-                            </Box>
+                            <pre>{questions[currentTab]}</pre>
                             <Divider />
                         </Box>
                         <Box height="100%" flex={1}>
-                            Editor
+                            Result
                         </Box>
                     </Flex>
                 </Box>

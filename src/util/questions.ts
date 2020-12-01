@@ -1,6 +1,6 @@
 import { easyQuestions, medQuestions, hardQuestions } from 'util/questionBank'
 
-export default function getRandomQuestions() {
+export function getRandomQuestions() {
     let [a1] = getNRandomElemsNoRepeat(easyQuestions, 1)
     let [a2, a3] = getNRandomElemsNoRepeat(medQuestions, 2)
     let [a4, a5] = getNRandomElemsNoRepeat(hardQuestions, 2)

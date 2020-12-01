@@ -19,19 +19,16 @@ import TestPage from 'components/TestPage'
 
 import styles from './App.module.scss'
 
+import { getRandomQuestions } from 'util/questions'
+
 const emptyAttempt: Attempt = {
     username: '',
-    a1: '',
-    a2: '',
-    a3: '',
-    a4: '',
-    a5: '',
+    ...getRandomQuestions(),
 }
 
 function App() {
     let attemptFromSession = useMemo(() => {
         let attemptStr = localStorage.getItem('attempt')
-        // console.log(attemptStr)
         if (!attemptStr) return null
         return JSON.parse(attemptStr) as Attempt
     }, [])
