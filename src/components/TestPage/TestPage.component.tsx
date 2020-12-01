@@ -8,14 +8,14 @@ import { Flex, Box, Divider, Tabs, TabList, Tab } from '@chakra-ui/react'
 import TopNav from 'components/TopNav'
 
 export function TestPage(props: Props) {
-    let { className } = props
+    let { className, attempt } = props
 
     let [currentTab, setCurrentTab] = useState<number>(0)
 
     return (
         <div className={`${styles.TestPage} ${className || ''}`}>
             <Flex direction="column" height="100%">
-                <TopNav />
+                <TopNav attempt={attempt} />
                 <Box flex={1}>
                     <Flex height="100%">
                         <Box height="100%" flex={1}>

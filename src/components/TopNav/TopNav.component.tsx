@@ -22,7 +22,7 @@ import { Props } from './TopNav.types'
 import styles from './_TopNav.module.scss'
 
 export function TopNav(props: Props) {
-    const { className } = props
+    const { className, attempt } = props
 
     let [isPopeverOpen, setIsPopoverOpen] = useState<boolean>(false)
 
@@ -32,7 +32,7 @@ export function TopNav(props: Props) {
                 <Flex>
                     <Center>
                         <Text>
-                            <b>Yer test</b>
+                            <b>Suerte {attempt.username}!</b>
                         </Text>
                     </Center>
                     <Text flex={1} textAlign="right">
