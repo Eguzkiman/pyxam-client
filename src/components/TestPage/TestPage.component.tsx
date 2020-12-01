@@ -1,25 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Props } from './TestPage.types'
 import styles from './_TestPage.module.scss'
 
-// import api from 'api'
-
-import {
-    Flex,
-    Box,
-    Divider,
-    Tabs,
-    TabList,
-    Tab,
-    Badge,
-    Stack,
-} from '@chakra-ui/react'
+import { Flex, Box, Divider, Tabs, TabList, Tab } from '@chakra-ui/react'
 
 import TopNav from 'components/TopNav'
 
 export function TestPage(props: Props) {
-    const { className } = props
+    let { className } = props
+
+    let [currentTab, setCurrentTab] = useState<number>(0)
 
     return (
         <div className={`${styles.TestPage} ${className || ''}`}>
@@ -28,11 +19,7 @@ export function TestPage(props: Props) {
                 <Box flex={1}>
                     <Flex height="100%">
                         <Box height="100%" flex={1}>
-                            <Tabs
-                                onChange={(index) => {
-                                    /*  */
-                                }}
-                            >
+                            <Tabs onChange={setCurrentTab}>
                                 <TabList>
                                     <Tab>Pregunta 1</Tab>
                                     <Tab>Pregunta 2</Tab>
@@ -42,7 +29,7 @@ export function TestPage(props: Props) {
                                 </TabList>
                             </Tabs>
                             <Box p={4}>
-                                <b>Pregunta 1</b>
+                                <b>Pregunta {currentTab}</b>
                             </Box>
                             <Divider />
                         </Box>
