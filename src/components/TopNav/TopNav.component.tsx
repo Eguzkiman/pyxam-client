@@ -27,7 +27,14 @@ import { Props } from './TopNav.types'
 import styles from './_TopNav.module.scss'
 
 export function TopNav(props: Props) {
-    const { className, attempt, onRunCode, onSubmitCode } = props
+    const {
+        className,
+        attempt,
+        onRunCode,
+        onSubmitCode,
+        isRunningCode,
+        isSubmittingCode,
+    } = props
 
     let [isPopeverOpen, setIsPopoverOpen] = useState<boolean>(false)
 
@@ -47,6 +54,8 @@ export function TopNav(props: Props) {
                                 variant="outline"
                                 leftIcon={<Icon as={FiPlay} />}
                                 onClick={onRunCode}
+                                isLoading={isRunningCode}
+                                loadingText="Running..."
                             >
                                 Run code
                             </Button>
@@ -54,6 +63,8 @@ export function TopNav(props: Props) {
                                 colorScheme="green"
                                 leftIcon={<Icon as={FiSave} />}
                                 onClick={onSubmitCode}
+                                isLoading={isSubmittingCode}
+                                loadingText={'Saving...'}
                             >
                                 Save
                             </Button>

@@ -42,6 +42,8 @@ export function TestPage(props: Props) {
             <Flex direction="column" height="100%">
                 <TopNav
                     attempt={attempt}
+                    isRunningCode={runCodeResult.isLoading}
+                    isSubmittingCode={false}
                     onRunCode={() => runCode(currentQuestion)}
                     onSubmitCode={() => {}}
                 />
