@@ -72,7 +72,7 @@ function App() {
                             <Route path="/test">
                                 <TestPage
                                     attempt={attempt}
-                                    setAttempt={setAttempt}
+                                    setAttempt={onSetAttempt}
                                 />
                             </Route>
                         </React.Fragment>

@@ -18,6 +18,9 @@ export function Editor(props: Props) {
                 options={{
                     language: 'python',
                     fontSize: 18,
+                    scrollbar: {
+                        vertical: 'hidden',
+                    },
                     minimap: {
                         enabled: false,
                     },

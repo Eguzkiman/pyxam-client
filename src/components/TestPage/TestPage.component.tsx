@@ -13,8 +13,15 @@ export function TestPage(props: Props) {
     let { className, attempt, setAttempt } = props
 
     let [currentTab, setCurrentTab] = useState<number>(0)
-    let questions = [attempt.a1, attempt.a2, attempt.a3, attempt.a4, attempt.a5]
-
+    const questionFields: ['a1', 'a2', 'a3', 'a4', 'a5'] = [
+        'a1',
+        'a2',
+        'a3',
+        'a4',
+        'a5',
+    ]
+    let currentQuestionField = questionFields[currentTab]
+    let currentQuestion = attempt[currentQuestionField]
     useEffect(() => {
         if (!attempt.username) {
             history.push('/login')
@@ -38,8 +45,13 @@ export function TestPage(props: Props) {
                     <Flex height="100%" direction="row">
                         <Box flex={1}>
                             <Editor
-                                value={questions[currentTab]}
-                                onChange={(code) => {}}
+                                value={currentQuestion}
+                                onChange={(code) => {
+                                    setAttempt({
+                                        ...attempt,
+                                        [currentQuestionField]: code,
+                                    })
+                                }}
                                 onSubmit={(code) => {}}
                             />
                             <Divider />
