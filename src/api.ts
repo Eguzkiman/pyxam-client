@@ -9,8 +9,6 @@ let baseURL = process.env.REACT_APP_API_HOST === 'heroku' ? herokuURL : localURL
 
 const api = axios.create({ baseURL: baseURL })
 
-console.log(baseURL)
-
 // Axios middleware to convert all api responses to camelCase
 api.interceptors.response.use((response: AxiosResponse) => {
     if (

@@ -63,23 +63,21 @@ function App() {
                                 setAttempt={onSetAttempt}
                             />
                         </Route>
-                        <React.Fragment>
-                            <Route path="/admin">
-                                <AdminPage />
-                            </Route>
-                            <Route path="/playground">
-                                <PlaygroundPage />
-                            </Route>
-                            <Route path="/test">
-                                <TestPage
-                                    attempt={attempt}
-                                    setAttempt={onSetAttempt}
-                                />
-                            </Route>
-                            <Route path="/thankyou">
-                                <ThankyouPage />
-                            </Route>
-                        </React.Fragment>
+                        <Route path="/admin">
+                            <AdminPage />
+                        </Route>
+                        <Route path="/playground">
+                            <PlaygroundPage />
+                        </Route>
+                        <Route path="/test">
+                            <TestPage
+                                attempt={attempt}
+                                setAttempt={onSetAttempt}
+                            />
+                        </Route>
+                        <Route path="/thankyou">
+                            <ThankyouPage />
+                        </Route>
                         <Route>
                             <Redirect to="/login" />
                         </Route>
