@@ -1,10 +1,12 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Redirect,
 } from 'react-router-dom'
+
+import debounce from 'lodash/debounce'
 
 import { Attempt } from 'types/BaseTypes'
 
@@ -29,6 +31,7 @@ const emptyAttempt: Attempt = {
 function App() {
     let attemptFromSession = useMemo(() => {
         let attemptStr = localStorage.getItem('attempt')
+        // console.log(attemptStr)
         if (!attemptStr) return null
         return JSON.parse(attemptStr) as Attempt
     }, [])
@@ -36,6 +39,20 @@ function App() {
     let [attempt, setAttempt] = useState<Attempt>(
         attemptFromSession || emptyAttempt
     )
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    let debouncedPersistAttempt = useCallback(
+        debounce((attempt: Attempt) => {
+            let attemptStr = JSON.stringify(attempt)
+            localStorage.setItem('attempt', attemptStr)
+        }, 500),
+        []
+    )
+
+    function onSetAttempt(attempt: Attempt) {
+        debouncedPersistAttempt(attempt)
+        setAttempt(attempt)
+    }
 
     return (
         <ChakraProvider>
@@ -45,7 +62,7 @@ function App() {
                         <Route path="/login">
                             <LoginPage
                                 attempt={attempt}
-                                setAttempt={setAttempt}
+                                setAttempt={onSetAttempt}
                             />
                         </Route>
                         <React.Fragment>

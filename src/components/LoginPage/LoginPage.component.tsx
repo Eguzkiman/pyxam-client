@@ -58,8 +58,8 @@ export function LoginPage(props: Props) {
                                     })
                                 }
                                 placeholder="ie. Eguzkiman"
-                                minlength="3"
-                                maxlength="20"
+                                minLength={3}
+                                maxLength={20}
                                 autocomplete="off"
                             />
                             <Button type="submit">Comenzar</Button>

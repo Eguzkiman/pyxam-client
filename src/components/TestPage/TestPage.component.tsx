@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Props } from './TestPage.types'
 import styles from './_TestPage.module.scss'
-
+import { useHistory } from 'react-router-dom'
 import { Flex, Box, Divider, Tabs, TabList, Tab } from '@chakra-ui/react'
 
 import TopNav from 'components/TopNav'
 
 export function TestPage(props: Props) {
+    let history = useHistory()
     let { className, attempt } = props
 
     let [currentTab, setCurrentTab] = useState<number>(0)
+
+    useEffect(() => {
+        if (!attempt.username) {
+            history.push('/login')
+        }
+    }, [attempt.username, history])
 
     return (
         <div className={`${styles.TestPage} ${className || ''}`}>

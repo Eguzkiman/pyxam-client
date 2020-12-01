@@ -82,7 +82,9 @@ export function TopNav(props: Props) {
                                             colorScheme="red"
                                             onClick={() => {
                                                 setIsPopoverOpen(false)
-                                                localStorage.removeItem('user')
+                                                localStorage.removeItem(
+                                                    'attempt'
+                                                )
                                                 window.location.reload()
                                             }}
                                         >
