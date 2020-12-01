@@ -3,7 +3,7 @@ import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import { camelizeKeys, decamelizeKeys } from 'humps'
 
 let localURL = 'http://localhost:3001'
-let herokuURL = 'http://pyxam-api.herokuapp.com'
+let herokuURL = 'https://pyxam-api.herokuapp.com'
 
 let baseURL = process.env.REACT_APP_API_HOST === 'heroku' ? herokuURL : localURL
 
