@@ -24,7 +24,9 @@ export function TestPage(props: Props) {
 
     let [submitCode, submitCodeResult] = useMutation(
         (attempt: Attempt): Promise<any> => {
-            return api.post('/attempts', attempt)
+            return api.post('/attempts', attempt).then(() => {
+                history.push('/thankyou')
+            })
         }
     )
 

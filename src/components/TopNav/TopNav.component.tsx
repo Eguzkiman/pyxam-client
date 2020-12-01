@@ -152,8 +152,9 @@ export function TopNav(props: Props) {
                             </Button>
                             <Button
                                 colorScheme="green"
+                                isLoading={isSubmittingCode}
+                                loadingText={''}
                                 onClick={() => {
-                                    setIsSubmitPopoverOpen(false)
                                     onSubmitCode()
                                 }}
                             >
