@@ -16,6 +16,7 @@ import AdminPage from 'components/AdminPage'
 import LoginPage from 'components/LoginPage'
 import PlaygroundPage from 'components/PlaygroundPage'
 import TestPage from 'components/TestPage'
+import ThankyouPage from 'components/ThankyouPage'
 
 import styles from './App.module.scss'
 
@@ -74,6 +75,9 @@ function App() {
                                     attempt={attempt}
                                     setAttempt={onSetAttempt}
                                 />
+                            </Route>
+                            <Route path="/thankyou">
+                                <ThankyouPage />
                             </Route>
                         </React.Fragment>
                         <Route>
