@@ -27,6 +27,8 @@ const emptyAttempt: Attempt = {
     ...getRandomQuestions(),
 }
 
+// Useless change for PR
+
 function App() {
     let attemptFromSession = useMemo(() => {
         let attemptStr = localStorage.getItem('attempt')
