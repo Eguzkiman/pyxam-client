@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from 'react'
+// Libraries
 
+import React, { useState, useEffect } from 'react'
 import { Attempt } from 'types/BaseTypes'
 import { Props } from './TestPage.types'
 import styles from './_TestPage.module.scss'
 import { useHistory } from 'react-router-dom'
 import Editor from 'components/Editor'
 import { Flex, Box, Divider, Tabs, TabList, Tab } from '@chakra-ui/react'
+import api from 'api'
+import { useMutation } from 'react-query'
+
+
+// Components
 
 import TopNav from 'components/TopNav'
 
-import api from 'api'
-import { useMutation } from 'react-query'
+
 
 export function TestPage(props: Props) {
     let history = useHistory()

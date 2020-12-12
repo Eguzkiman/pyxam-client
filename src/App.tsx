@@ -1,3 +1,6 @@
+
+// Libraries
+
 import React, { useState, useMemo, useCallback } from 'react'
 import {
     BrowserRouter as Router,
@@ -5,12 +8,13 @@ import {
     Route,
     Redirect,
 } from 'react-router-dom'
-
 import debounce from 'lodash/debounce'
-
 import { Attempt } from 'types/BaseTypes'
-
 import { ChakraProvider } from '@chakra-ui/react'
+import styles from './App.module.scss'
+import { getRandomQuestions } from 'util/questions'
+
+// Components
 
 import AdminPage from 'components/AdminPage'
 import LoginPage from 'components/LoginPage'
@@ -18,9 +22,6 @@ import PlaygroundPage from 'components/PlaygroundPage'
 import TestPage from 'components/TestPage'
 import ThankyouPage from 'components/ThankyouPage'
 
-import styles from './App.module.scss'
-
-import { getRandomQuestions } from 'util/questions'
 
 const emptyAttempt: Attempt = {
     username: '',
