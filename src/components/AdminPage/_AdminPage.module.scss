@@ -1,14 +1,49 @@
 .AdminPage {
     // add rules here here, like so:
     background-color: transparent;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    "LeftBox RightBox";
 
-    &_element {
-        // an example of how a BEM element would look like (feel free to rename or remove)
-        // add element rules here
+    .LeftBox{
+        grid-area: LeftBox;
+
+        .Answers{
+
+            .loader{
+                top: 0;
+                left: 0;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+                background-color: black;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+    .RightBox{
+        grid-area: RightBox;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+        "TopBox"
+        "BottomBox";
+
+        .TopBox{
+            grid-area: TopBox;
+        }
+        .BottomBox{
+            grid-area: BottomBox;
+        }
     }
 
-    &___modifier {
-        // an example of how a BEM modifier would look like (feel free to rename or remove)
-        // add modifier rules here
-    }
 }
